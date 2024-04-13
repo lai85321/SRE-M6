@@ -3,7 +3,7 @@ const getAddOne = async (req, res) => {
   let input = parseInt(number);
   try {
     if (input === null || isNaN(input)) {
-      return res.status(400).json({ error: "Please enter a number" });
+      return res.status(400).json({ error: "Please enter a number!" });
     }
     let result = input + 1;
     res.status(200).json({ result: result });
