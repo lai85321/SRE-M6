@@ -20,6 +20,6 @@ describe("AddOne", async () => {
   it("no querystring in api", async () => {
     const res = await requester.get("/addOne");
     const data = res.body;
-    expect(data.error).equal("Please enter a number!");
+    expect(data.error).equal("Please enter a number");
   });
 });
