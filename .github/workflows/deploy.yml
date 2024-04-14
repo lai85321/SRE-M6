@@ -6,3 +6,10 @@ on:
       tag:
         description: "Select image tag to deploy to EKS"
         required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "test"
