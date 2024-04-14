@@ -16,4 +16,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: 'There is a deploy for ${{ github.event.inputs.tag }}.\n Need your approval: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          args: |
+            There is a deploy for ${{ github.event.inputs.tag }}.
+            Need your approval: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
