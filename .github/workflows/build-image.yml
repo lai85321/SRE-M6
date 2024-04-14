@@ -60,20 +60,23 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ github.ref_name }}
         run: |
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
 
-      - name: Scan Docker image
-        id: docker-scan
-        uses: alexjurkiewicz/ecr-scan-image@v3.0.0
-        with:
-          repository: ${{env.ECR_REPOSITORY}}
-          tag: ${{ github.sha }}
-          fail_threshold: high
+      - name: Scan image for vulnerabilities
+          uses: aquasecurity/trivy-action@master
+          env:
+            REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          with:
+            image-ref: ${{ env.REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ github.ref_name }}
+            exit-code: '1'
+            ignore-unfixed: true
+            vuln-type: 'os,library'
+            severity: 'CRITICAL,HIGH'
 
       - name: Push Docker image to ECR
         run: |
