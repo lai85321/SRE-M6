@@ -62,5 +62,8 @@ jobs:
           severity: "CRITICAL"
           IMAGE_TAG: ${{ github.ref_name }}
       - name: Push Docker image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.ref_name }}
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
