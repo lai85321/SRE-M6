@@ -71,7 +71,7 @@ jobs:
         id: docker-scan
         uses: alexjurkiewicz/ecr-scan-image@v3.0.0
         with:
-          repository: ${{$ECR_REPOSITORY}}
+          repository: ${{ECR_REPOSITORY}}
           tag: ${{IMAGE_TAG}}
           fail_threshold: high
 
