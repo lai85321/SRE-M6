@@ -1,0 +1,8 @@
+name: Deploy to Amazon EKS
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Select image tag to deploy to EKS"
+        required: true
