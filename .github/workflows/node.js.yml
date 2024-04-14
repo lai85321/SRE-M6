@@ -4,8 +4,16 @@ on:
   push:
     branches:
       - "**"
+    paths-ignore:
+      - "README.md"
+      - "**/*.md"
+      - "**/*.png"
   pull_request:
     types: [opened, reopened]
+    paths-ignore:
+      - "README.md"
+      - "**/*.md"
+      - "**/*.png"
 
 jobs:
   build:
