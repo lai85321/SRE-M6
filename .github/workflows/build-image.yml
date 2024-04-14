@@ -71,8 +71,8 @@ jobs:
         id: docker-scan
         uses: alexjurkiewicz/ecr-scan-image@v3.0.0
         with:
-          repository: ${{ECR_REPOSITORY}}
-          tag: ${{IMAGE_TAG}}
+          repository: ${{env.ECR_REPOSITORY}}
+          tag: ${{ github.sha }}
           fail_threshold: high
 
       - name: Push Docker image to ECR
