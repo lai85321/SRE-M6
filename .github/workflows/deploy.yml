@@ -27,5 +27,5 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          approvers: myteam
+          approvers: lai85321
           minimum-approvals: 1
