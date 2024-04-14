@@ -8,8 +8,12 @@ on:
         required: true
 
 jobs:
-  test:
+  notification-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - run: echo "test"
+      - name: Send Discord notification
+        uses: Ilshidur/action-discord@v3
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: 'There is a deploy for ${{ github.event.inputs.tag }}.\n Need your approval: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
