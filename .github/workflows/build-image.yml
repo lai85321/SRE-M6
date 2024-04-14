@@ -68,15 +68,15 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
 
       - name: Scan image for vulnerabilities
-          uses: aquasecurity/trivy-action@master
-          env:
-            REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          with:
-            image-ref: ${{ env.REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ github.ref_name }}
-            exit-code: '1'
-            ignore-unfixed: true
-            vuln-type: 'os,library'
-            severity: 'CRITICAL,HIGH'
+        uses: aquasecurity/trivy-action@master
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ github.ref_name }}
+          exit-code: "1"
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
 
       - name: Push Docker image to ECR
         run: |
