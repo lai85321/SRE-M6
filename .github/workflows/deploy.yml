@@ -26,6 +26,6 @@ jobs:
       - name: Manual approval
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ secrets.GITHUB_TOKEN }}
+          secret: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           approvers: myteam
           minimum-approvals: 1
